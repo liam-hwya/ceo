@@ -162,5 +162,7 @@ $RECYCLE.BIN/
 
 # Custom Ignores
 src/main/resources/application.properties
+.classpath
+.project
 
 # End of https://www.gitignore.io/api/osx,maven,windows,intellij,visualstudiocode
