@@ -164,5 +164,9 @@ $RECYCLE.BIN/
 src/main/resources/application.properties
 .classpath
 .project
+.vscode
+bin
+.settings
+ceo
 
 # End of https://www.gitignore.io/api/osx,maven,windows,intellij,visualstudiocode
