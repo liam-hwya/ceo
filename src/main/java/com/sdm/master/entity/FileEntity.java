@@ -41,14 +41,14 @@ public class FileEntity extends DefaultEntity implements Serializable {
     private String type;
     @JsonIgnore
     @Column(name = "size", columnDefinition = "INT UNSIGNED", nullable = false)
-    private long fileSize;
+    private Long fileSize;
     @JsonIgnore
     @Column(name = "storage_path", columnDefinition = "varchar(1000)", length = 1000, nullable = true)
     private String storagePath;
     @Column(name = "external_url", columnDefinition = "varchar(1000)", length = 1000, nullable = true)
     private String externalUrl;
     @Column(name = "is_public", length = 25)
-    private boolean publicAccess;
+    private Boolean publicAccess;
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private Status status;
@@ -57,7 +57,7 @@ public class FileEntity extends DefaultEntity implements Serializable {
         this.status = Status.STORAGE;
     }
 
-    public FileEntity(String id, String name, String extension, String type, long fileSize,
+    public FileEntity(String id, String name, String extension, String type, Long fileSize,
                       String storagePath, String externalUrl) {
         if (externalUrl == null || externalUrl.length() <= 0) {
             this.status = Status.STORAGE;
@@ -136,11 +136,11 @@ public class FileEntity extends DefaultEntity implements Serializable {
         this.type = type;
     }
 
-    public long getFileSize() {
+    public Long getFileSize() {
         return fileSize;
     }
 
-    public void setFileSize(long size) {
+    public void setFileSize(Long size) {
         this.fileSize = size;
     }
 
@@ -152,11 +152,11 @@ public class FileEntity extends DefaultEntity implements Serializable {
         this.storagePath = storagePath;
     }
 
-    public boolean isPublicAccess() {
+    public Boolean isPublicAccess() {
         return publicAccess;
     }
 
-    public void setPublicAccess(boolean publicAccess) {
+    public void setPublicAccess(Boolean publicAccess) {
         this.publicAccess = publicAccess;
     }
 

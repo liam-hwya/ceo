@@ -12,10 +12,10 @@ public class Leave extends DefaultEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column( nullable = false)
-    private long userId;
+    private Long userId;
 
     @Column(nullable = false)
     private String description;
@@ -52,15 +52,15 @@ public class Leave extends DefaultEntity {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 

@@ -11,11 +11,11 @@ public class Calendar extends DefaultEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "day")
     @Nullable
-    private int day;
+    private Integer day;
 
     @Column(name = "month")
     @Nullable
@@ -23,7 +23,7 @@ public class Calendar extends DefaultEntity {
 
     @Column(name = "year")
     @Nullable
-    private int year;
+    private Integer year;
 
     @Column(name = "dayOfWeek")
     @Nullable
@@ -43,15 +43,15 @@ public class Calendar extends DefaultEntity {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getDay() {
+    public Integer getDay() {
         return day;
     }
 
-    public void setDay(int day) {
+    public void setDay(Integer day) {
         this.day = day;
     }
 
@@ -64,11 +64,11 @@ public class Calendar extends DefaultEntity {
         this.month = month;
     }
 
-    public int getYear() {
+    public Integer getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
 

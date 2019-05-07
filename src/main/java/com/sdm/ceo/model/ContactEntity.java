@@ -1,4 +1,4 @@
-package com.sdm.ceo.entity;
+package com.sdm.ceo.model;
 
 import java.util.HashMap;
 import java.util.Map;

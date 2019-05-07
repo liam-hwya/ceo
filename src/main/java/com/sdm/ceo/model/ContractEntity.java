@@ -1,4 +1,4 @@
-package com.sdm.ceo.entity;
+package com.sdm.ceo.model;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,16 +16,16 @@ public class ContractEntity extends DefaultEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(nullable = false, unique = true)
     private String code;
 
     @Column(nullable = false)
-    private long toContact;
+    private Long toContact;
 
     @Column(nullable = false)
-    private long amount;
+    private Long amount;
 
     @Column
     private String cloudLink;
@@ -34,13 +34,13 @@ public class ContractEntity extends DefaultEntity{
     private Date contractDate;
 
     @Column
-    private int productId;
+    private Integer productId;
 
     @Column(nullable = false)
-    private long senderId;
+    private Long senderId;
 
     @Column(nullable = false)
-    private long signId;
+    private Long signId;
 
     @Column
     private String note;
@@ -54,7 +54,7 @@ public class ContractEntity extends DefaultEntity{
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -66,19 +66,19 @@ public class ContractEntity extends DefaultEntity{
         this.code = code;
     }
 
-    public long getToContact() {
+    public Long getToContact() {
         return toContact;
     }
 
-    public void setToContact(long toContact) {
+    public void setToContact(Long toContact) {
         this.toContact = toContact;
     }
 
-    public long getAmount() {
+    public Long getAmount() {
         return amount;
     }
 
-    public void setAmount(long amount) {
+    public void setAmount(Long amount) {
         this.amount = amount;
     }
 
@@ -98,27 +98,27 @@ public class ContractEntity extends DefaultEntity{
         this.contractDate = contractDate;
     }
 
-    public int getProductId() {
+    public Integer getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(Integer productId) {
         this.productId = productId;
     }
 
-    public long getSenderId() {
+    public Long getSenderId() {
         return senderId;
     }
 
-    public void setSenderId(long senderId) {
+    public void setSenderId(Long senderId) {
         this.senderId = senderId;
     }
 
-    public long getSignId() {
+    public Long getSignId() {
         return signId;
     }
 
-    public void setSignId(long signId) {
+    public void setSignId(Long signId) {
         this.signId = signId;
     }
 

@@ -23,7 +23,7 @@ public class MenuEntity extends DefaultEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(nullable = false, columnDefinition = "varchar(50)")
     private String name;
@@ -44,10 +44,10 @@ public class MenuEntity extends DefaultEntity implements Serializable {
     private String type;
 
     @Column(nullable = false)
-    private int priority;
+    private Integer priority;
 
     @Column(nullable = false)
-    private boolean divider;
+    private Boolean divider;
 
     @NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(name = "parent_id")
@@ -64,7 +64,7 @@ public class MenuEntity extends DefaultEntity implements Serializable {
     public MenuEntity() {
     }
 
-    public MenuEntity(int id, String name, String description, String state, String icon, String type, int priority, boolean separator) {
+    public MenuEntity(Integer id, String name, String description, String state, String icon, String type, Integer priority, Boolean separator) {
         super();
         this.id = id;
         this.name = name;
@@ -81,7 +81,7 @@ public class MenuEntity extends DefaultEntity implements Serializable {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -125,19 +125,19 @@ public class MenuEntity extends DefaultEntity implements Serializable {
         this.type = type;
     }
 
-    public int getPriority() {
+    public Integer getPriority() {
         return priority;
     }
 
-    public void setPriority(int priority) {
+    public void setPriority(Integer priority) {
         this.priority = priority;
     }
 
-    public boolean getDivider() {
+    public Boolean getDivider() {
         return divider;
     }
 
-    public void setDivider(boolean divider) {
+    public void setDivider(Boolean divider) {
         this.divider = divider;
     }
 

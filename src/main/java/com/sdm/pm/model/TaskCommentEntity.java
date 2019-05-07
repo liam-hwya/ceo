@@ -1,4 +1,4 @@
-package com.sdm.pm.entity;
+package com.sdm.pm.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -12,13 +12,13 @@ public class WorkingHour extends DefaultEntity {
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "userId", nullable = false)
-    private long userId;
+    private Long userId;
 
     @Column(name = "dayOfWeek", nullable = false)
-    private int dayOfWeek;
+    private Integer dayOfWeek;
 
     @Column(name = "fromTime", nullable = false)
     private Time fromTime;
@@ -30,23 +30,23 @@ public class WorkingHour extends DefaultEntity {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public int getDayOfWeek() {
+    public Integer getDayOfWeek() {
         return dayOfWeek;
     }
 
-    public void setDayOfWeek(int dayOfWeek) {
+    public void setDayOfWeek(Integer dayOfWeek) {
         this.dayOfWeek = dayOfWeek;
     }
 

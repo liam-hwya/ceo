@@ -1,4 +1,4 @@
-package com.sdm.ceo.entity;
+package com.sdm.ceo.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,7 +18,7 @@ public class ProductEntity extends DefaultEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(nullable = false)
     private String code;
@@ -33,7 +33,7 @@ public class ProductEntity extends DefaultEntity{
     private String group;
 
     @Column
-    private long price;
+    private Long price;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "tbl_product_extras", joinColumns = @JoinColumn(name = "productId", nullable = false))
@@ -50,7 +50,7 @@ public class ProductEntity extends DefaultEntity{
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -86,11 +86,11 @@ public class ProductEntity extends DefaultEntity{
         this.group = group;
     }
 
-    public long getPrice() {
+    public Long getPrice() {
         return price;
     }
 
-    public void setPrice(long price) {
+    public void setPrice(Long price) {
         this.price = price;
     }
 

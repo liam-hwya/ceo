@@ -26,7 +26,7 @@ public class RoleEntity extends DefaultEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(unique = true, nullable = false)
     private String name;
@@ -46,7 +46,7 @@ public class RoleEntity extends DefaultEntity implements Serializable {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

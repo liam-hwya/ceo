@@ -23,11 +23,11 @@ public abstract class DefaultEntity implements Serializable {
     private static final long serialVersionUID = -1235673932545866165L;
     @CreatedBy
     @Column(updatable = false)
-    private long createdBy;
+    private Long createdBy;
 
     @LastModifiedBy
     @Column
-    private long modifiedBy;
+    private Long modifiedBy;
 
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -41,19 +41,19 @@ public abstract class DefaultEntity implements Serializable {
 
     public abstract <T extends Serializable> T getId();
 
-    public long getCreatedBy() {
+    public Long getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(long createdBy) {
+    public void setCreatedBy(Long createdBy) {
         this.createdBy = createdBy;
     }
 
-    public long getModifiedBy() {
+    public Long getModifiedBy() {
         return modifiedBy;
     }
 
-    public void setModifiedBy(long modifiedBy) {
+    public void setModifiedBy(Long modifiedBy) {
         this.modifiedBy = modifiedBy;
     }
 

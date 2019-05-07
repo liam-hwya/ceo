@@ -25,7 +25,7 @@ public class UserEntity extends DefaultEntity implements Serializable {
     private static final long serialVersionUID = 1939600458371706458L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @NotBlank
     @Size(min = 6, max = 255)
@@ -108,7 +108,7 @@ public class UserEntity extends DefaultEntity implements Serializable {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

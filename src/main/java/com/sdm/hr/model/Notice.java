@@ -13,7 +13,7 @@ public class Notice extends DefaultEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "title" , nullable = false)
     private String title;
@@ -47,7 +47,7 @@ public class Notice extends DefaultEntity {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

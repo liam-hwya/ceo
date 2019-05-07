@@ -10,35 +10,35 @@ public class Manager extends DefaultEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "userId" , nullable = false)
-    private long userId;
+    private Long userId;
 
     public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     @Column(name = "reportTo" , nullable = false)
-    private long reportTo;
+    private Long reportTo;
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public long getReportTo() {
+    public Long getReportTo() {
         return reportTo;
     }
 
-    public void setReportTo(long reportTo) {
+    public void setReportTo(Long reportTo) {
         this.reportTo = reportTo;
     }
 }

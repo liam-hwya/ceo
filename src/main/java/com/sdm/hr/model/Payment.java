@@ -13,10 +13,10 @@ public class Payment extends DefaultEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "userId", nullable = false)
-    private long userId;
+    private Long userId;
 
     @Column(name = "description", nullable = false)
     private String description;
@@ -35,15 +35,15 @@ public class Payment extends DefaultEntity {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 

@@ -1,4 +1,4 @@
-package com.sdm.ceo.entity;
+package com.sdm.ceo.model;
 
 import javax.persistence.*;
 
@@ -12,7 +12,7 @@ public class ContactItemEntity extends DefaultEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(nullable = false)
     private String type;
@@ -27,7 +27,7 @@ public class ContactItemEntity extends DefaultEntity{
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
