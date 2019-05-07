@@ -26,50 +26,62 @@ public class UserEntity extends DefaultEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     @NotBlank
     @Size(min = 6, max = 255)
     @Column(name = "userName", unique = true, nullable = false)
     private String userName;
+    
     @Email
     @Size(max = 255)
     @Column(name = "email", unique = true)
     private String email;
+    
     @Size(max = 255)
     @JsonIgnore
     @Column(name = "display_name")
     private String displayName;
+    
     @NotFound(action = NotFoundAction.IGNORE)
     @JoinTable(name = "tbl_user_roles",
         joinColumns = {@JoinColumn(name = "user_id")},
         inverseJoinColumns = {@JoinColumn(name = "role_id")})
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<RoleEntity> roles = new HashSet<>();
+
     @ElementCollection(fetch = FetchType.EAGER)
     @MapKeyColumn(name = "name")
     @Column(name = "value")
     @CollectionTable(name = "tbl_user_extras",
         joinColumns = @JoinColumn(name = "user_id", nullable = false))
     private Map<String, String> extras = new HashMap();
+    
     @NotBlank
     @Size(min = 6, max = 255)
     @Column(name = "password", columnDefinition = "VARCHAR(255)", nullable = false)
     private String password;
+    
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "profile_image", nullable = true)
     @NotFound(action = NotFoundAction.IGNORE)
     private FileEntity profileImage;
+    
     @Column(name = "facebook_id", unique = true, nullable = true, columnDefinition = "VARCHAR(255)", length = 500)
     private String facebookId;
+    
     @JsonIgnore
     @Column(name = "otp_token", length = TOKEN_LENGTH)
     private String otpToken;
+    
     @JsonIgnore
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "otp_expired", length = 19)
     private Date otpExpired;
+    
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private Status status;
+    
     @Transient
     private String currentToken;
 
@@ -198,7 +210,6 @@ public class UserEntity extends DefaultEntity implements Serializable {
         if (this.extras == null) {
             this.extras = new HashMap<>();
         }
-
         this.extras.put(key, value);
     }
 

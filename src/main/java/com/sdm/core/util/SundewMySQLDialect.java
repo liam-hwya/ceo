@@ -6,6 +6,7 @@
 package com.sdm.core.util;
 
 import org.hibernate.dialect.InnoDBStorageEngine;
+import org.hibernate.dialect.MySQL8Dialect;
 import org.hibernate.dialect.MySQLDialect;
 import org.hibernate.dialect.MySQLStorageEngine;
 
