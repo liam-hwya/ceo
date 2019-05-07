@@ -167,6 +167,5 @@ src/main/resources/application.properties
 .vscode
 bin
 .settings
-ceo
 
 # End of https://www.gitignore.io/api/osx,maven,windows,intellij,visualstudiocode
