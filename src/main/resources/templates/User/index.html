@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="template ::bootstrap('All Staff')">
+<body>
+
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <h3>Staff</h3>
+        </div>
+        <div class="col-md-6"></div>
+        <div class="col-md-3">
+            <a th:href="@{/staff/add/}" class="btn btn-primary btn-sm">Add Staff</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="row:${data}">
+                    <th th:text="${row.displayName}"></th>
+                    <td th:text="${row.userName}"></td>
+                    <td th:text="${row.email}"></td>
+                    <!--        <td th:if="${row.status.name() == 'ACTIVE'}" ></td>-->
+                    <td>
+                        <span th:switch="${row.status.toString()}">
+                            <span th:case="'ACTIVE'" class="badge badge-success" th:text="${row.status}"></span>
+                            <span th:case="'PENDING'" class="badge badge-info"  th:text="${row.status}"></span>
+                            <span th:case="'CANCEL'" class="badge badge-dark"  th:text="${row.status}"></span>
+                        </span>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
