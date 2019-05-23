@@ -3,44 +3,237 @@
 <head th:replace="template ::bootstrap('Add Staff')">
 <body>
 
+<!--<script type="text/javascript">-->
+
+<!--    // $(document).ready(function(){-->
+<!--    //    $("#selectWorkingHour").click(function(){-->
+<!--    //        var databack = $("#modalSubscriptionForm #date").val();-->
+<!--    //         $('#workingHourResult').html(databack);-->
+<!--    //    });-->
+<!--    // });-->
+
+<!--    $(document).ready(function() {-->
+
+<!--        // for(n=0;n<6;n++){-->
+<!--        //-->
+<!--        //     $("").click(function(){-->
+<!--        //         $("#from0,#to0").attr('disabled', !this.checked);-->
+<!--        //     });-->
+<!--        //-->
+<!--        // }-->
+<!--        //-->
+<!--        //-->
+<!--        //-->
+<!--        // $("#monday").click(function(){-->
+<!--        //     $("#from1,#to1").attr('disabled', !this.checked);-->
+<!--        // });-->
+<!--        //-->
+<!--        // $("#tuesday").click(function(){-->
+<!--        //     $("#from2,#to2").attr('disabled', !this.checked);-->
+<!--        // });-->
+<!--        //-->
+<!--        // $("#wednesday").click(function(){-->
+<!--        //     $("#from3,#to3").attr('disabled', !this.checked);-->
+<!--        // });-->
+<!--        //-->
+<!--        // $("#thursday").click(function(){-->
+<!--        //     $("#from4,#to4").attr('disabled', !this.checked);-->
+<!--        // });-->
+<!--        //-->
+<!--        // $("#friday").click(function(){-->
+<!--        //     $("#from5,#to5").attr('disabled', !this.checked);-->
+<!--        // });-->
+<!--        //-->
+<!--        // $("#saturday").click(function(){-->
+<!--        //     $("#from6,#to6").attr('disabled', !this.checked);-->
+<!--        // });-->
+
+<!--        $("#selectWorkingHour").click(function(){-->
+
+<!--            tableShow();-->
+<!--            var dateList = [];-->
+<!--            $.each($("input[id='Date']:checked"), function(){-->
+<!--                dateList.push($(this).val());-->
+<!--            });-->
+<!--            $("#workingDateResult").html("<span>Your selected days are:</span>"+dateList.join(", "));-->
+
+<!--            if($("#sunday").is(":checked")){-->
+<!--                $("#periodRow0").css({"color":"#53f442","font-size":"17px"});-->
+<!--                $("#from0show").html($("#from0").val());-->
+<!--                $("#to0show").html($("#to0").val());-->
+<!--            }-->
+
+<!--            if($("#monday").is(":checked")){-->
+<!--                $("#periodRow1").css({"color":"#53f442","font-size":"17px"});-->
+<!--                $("#from1show").html($("#from1").val());-->
+<!--                $("#to1show").html($("#to1").val());-->
+<!--            }-->
+
+<!--            if($("#tuesday").is(":checked")){-->
+<!--                $("#periodRow2").css({"color":"#53f442","font-size":"17px"});-->
+<!--                $("#from2show").html($("#from2").val());-->
+<!--                $("#to2show").html($("#to2").val());-->
+<!--            }-->
+
+<!--            if($("#wednesday").is(":checked")) {-->
+<!--                $("#periodRow3").css({"color":"#53f442","font-size":"17px"});-->
+<!--                $("#from3show").html($("#from3").val());-->
+<!--                $("#to3show").html($("#to3").val());-->
+<!--            }-->
+
+<!--            if($("#thursday").is(":checked")) {-->
+<!--                $("#periodRow4").css({"color":"#53f442","font-size":"17px"});-->
+<!--                $("#from4show").html($("#from4").val());-->
+<!--                $("#to4show").html($("#to4").val());-->
+<!--            }-->
+
+<!--            if($("#friday").is(":checked")) {-->
+<!--                $("#periodRow5").css({"color":"#53f442","font-size":"17px"});-->
+<!--                $("#from5show").html($("#from5").val());-->
+<!--                $("#to5show").html($("#to5").val());-->
+<!--            }-->
+
+<!--            if($("#saturday").is(":checked")) {-->
+<!--                $("#periodRow6").css({"color":"#53f442","font-size":"17px"});-->
+<!--                $("#from6show").html($("#from6").val());-->
+<!--                $("#to6show").html($("#to6").val());-->
+<!--            }-->
+
+<!--        });-->
+
+
+<!--        function tableShow(){-->
+<!--            $("#workingPeriodTable").removeAttr('hidden');-->
+<!--        }-->
+
+<!--    });-->
+
+<!--</script>-->
+
 <div class="container">
+    <br>
+    <br>
     <div class="row">
-        <div class="col-md-12">
-            <form>
+        <div class="col-md-3">
+            <h3>Add New Staff </h3><i class="fas fa-user-plus"></i>
+        </div>
+        <div class="col-md-6"></div>
+        <div class="col-md-3  d-flex flex-row-reverse">
+            <a th:href="@{/staff/}" class="text-warning">Go Back <i class="fas fa-undo-alt"></i></a>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12 table_container">
+            <form method="post" enctype="multipart/form-data">
                 <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label>Name</label>
-                        <input type="text" class="form-control" placeholder="your name">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label>Username</label>
-                        <input type="text" class="form-control" placeholder="choose your username">
+                    <div class="form-group">
+                        <label>Profile Upload</label>
+                        <input type="file" name="file">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label>Email</label>
-                        <input type="email" class="form-control" placeholder="your email">
+                        <label>Name</label>
+                        <input type="text" class="form-control" placeholder="your name" name="user.displayName" th:value="${data}?${data.user.displayName}:''"><br>
                     </div>
                     <div class="form-group col-md-6">
-                        <label>Password</label>
-                        <input type="password" class="form-control"  placeholder="choose your password">
+                        <label>Username</label>
+                        <input type="text" class="form-control" placeholder="choose your username" name="user.userName"  th:value="${data}?${data.user.userName}:''"><br>
                     </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label>Email</label>
+                        <input type="email" class="form-control" placeholder="your email" name="user.email"  th:value="${data}?${data.user.email}:''">
+                    </div>
+                    <div class="form-group col-md-3" th:if="${#httpServletRequest.requestURI == '/staff/add/0'}">
+                        <label>Password</label>
+                        <input type="password" class="form-control"  placeholder="choose your password" name="user.password">
+                    </div>
+                    <span class="text-danger" th:text="${message}"></span>
+                    <div class="form-group col-md-3" th:if="${#httpServletRequest.requestURI == '/staff/add/0'}">
+                        <label>Confirm Password</label>
+                        <input type="password" class="form-control"  placeholder="confirm your password" name="user.confirmPassword">
+                    </div>
+<!--                    <div class="form-group col-md-4" th:if="${#httpServletRequest.requestURI == '/staff/add/0'}">-->
+<!--                        <label>Confirm Password</label>-->
+<!--                        <input type="password" class="form-control" placeholder="confirm your password" name="user.confirmPassword">-->
+<!--                    </div>-->
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="inputCity">Status</label>
-                        <input type="text" class="form-control" id="inputCity">
+                        <label>Work Hour</label><br>
+                        <table class="table table-condensed">
+                            <thead>
+                            <tr>
+                                <th>Day of week</th>
+                                <th class="text-center">From</th>
+                                <th class="text-center">To</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <!-- Check the link where the url come from -->
+                                <tr th:each="dow,status:${data.workingHours}">
+                                    <td>
+                                        <div class="checkbox" style="margin-top:5px;">
+                                            <label class="checkbox-custom" data-initialize="checkbox" >
+                                                <input th:name="${'workingHours['+status.index+'].checkedDay'}" th:checked="${dow.checkedDay}" class="form-check-input" type="checkbox" th:id="${'Constants.DAY_ID['+status.index+']'}">
+                                                <input type="hidden" th:name="${'workingHours['+status.index+'].dayOfWeek'}" th:value="${status.index}">
+                                                <span class="checkbox-label" th:text="${dayOfWeeks[dow.dayOfWeek]}"></span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input id="from6" th:name="${'workingHours['+status.index+'].fromTime'}" class="form-control text-center" type="time" placeholder="HH:MM" th:value="${dow}?${dow.fromTime}:'09:00'">
+                                    </td>
+                                    <td>
+                                        <input id="to6" th:name="${'workingHours['+status.index+'].toTime'}" class="form-control text-center" type="time" placeholder="HH:MM" th:value="${dow}?${dow.toTime}:'18:00'">
+                                        <input type="hidden" th:name="${'workingHours['+status.index+'].userId'}" th:value="${data.user.id}">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="form-group col-md-6">
-                        <button type="submit" class="btn btn-primary">Sign in</button>
-                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="sel1">Select your manager</label>
+                    <select class="form-control" id="sel1" name="user.reportTo" multiple="multiple">
+                        <span th:each="row:${staffLists}">
+                            <option th:if="${#httpServletRequest.requestURI == '/staff/add/'}" th:value="${row.id}" th:text="${row.displayName}"></option>
+                            <option th:unless="${#httpServletRequest.requestURI == '/staff/add/'}" th:selected="${#lists.contains(data.user.reportTo, row.id)}" th:value="${row.id}" th:text="${row.displayName}"></option>
+                        </span>
+                    </select>
+                </div>
+                <div class="form-group" >
+                    <label for="payment">Payment</label>
+                    <input type="text" class="form-control" id="payment" name="payment.amountPerMonth" th:if="${#httpServletRequest.requestURI == '/staff/add/0'}">
+                    <input type="text" class="form-control" id="payment" name="payment.amountPerMonth" th:unless="${#httpServletRequest.requestURI == '/staff/add/0'}" th:value="${data.payment.amountPerMonth}">
+                </div>
+                <div class="form-group">
+                    <label for="from">From</label>
+                    <input type="date" class="form-control" id="from" name="payment.fromDate" th:if="${#httpServletRequest.requestURI == '/staff/add/0'}">
+                    <input type="date" class="form-control" id="from" name="payment.fromDate" th:unless="${#httpServletRequest.requestURI == '/staff/add/0'}" th:value="${#calendars.format(data.payment.fromDate, 'yyyy-MM-dd')}">
+                </div>
+                <div class="form-group">
+                    <label for="to">To</label>
+                    <input type="date" class="form-control" id="to" name="payment.toDate" th:if="${#httpServletRequest.requestURI == '/staff/add/0'}">
+                    <input type="date" class="form-control" id="to" name="payment.toDate" th:unless="${#httpServletRequest.requestURI == '/staff/add/0'}" th:value="${#calendars.format(data.payment.toDate, 'yyyy-MM-dd')}">
+                </div>
+                <div class="form-group">
+                    <label for="desc">Description</label>
+                    <textarea class="form-control" rows="5" id="desc" name="payment.description" th:if="${#httpServletRequest.requestURI == '/staff/add/0'}"></textarea>
+                    <textarea class="form-control" rows="5" id="desc" name="payment.description" th:unless="${#httpServletRequest.requestURI == '/staff/add/0'}" th:text="${data.payment.description}"></textarea>
+                    <input type="number" name="payment.userId" th:if="${#httpServletRequest.requestURI == '/staff/add/0'}" hidden/>
+                    <input type="number" name="payment.userId" th:unless="${#httpServletRequest.requestURI == '/staff/add/0'}" th:value="${data.payment.userId}" hidden/>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Add Staff" class="btn c-btn">
                 </div>
             </form>
         </div>
     </div>
 </div>
-
 </body>
 </html>

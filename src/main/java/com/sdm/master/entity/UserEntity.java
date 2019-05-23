@@ -28,7 +28,7 @@ public class UserEntity extends DefaultEntity implements Serializable {
     private Long id;
 
     @NotBlank
-    @Size(min = 6, max = 255)
+    @Size(min = 6, max = 255 , message = "Username must be at least 6 characters")
     @Column(name = "userName", unique = true, nullable = false)
     private String userName;
     
@@ -37,11 +37,19 @@ public class UserEntity extends DefaultEntity implements Serializable {
     @Column(name = "email", unique = true)
     private String email;
     
-    @Size(max = 255)
+    @Size(max = 255 , message = "Your name is too long.Please type correct name")
     @JsonIgnore
     @Column(name = "display_name")
     private String displayName;
-    
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
     @NotFound(action = NotFoundAction.IGNORE)
     @JoinTable(name = "tbl_user_roles",
         joinColumns = {@JoinColumn(name = "user_id")},
@@ -57,9 +65,12 @@ public class UserEntity extends DefaultEntity implements Serializable {
     private Map<String, String> extras = new HashMap();
     
     @NotBlank
-    @Size(min = 6, max = 255)
+    @Size(min = 6, max = 255 , message = "Password must be at least 6 digits")
     @Column(name = "password", columnDefinition = "VARCHAR(255)", nullable = false)
     private String password;
+
+    @Transient
+    private String confirmPassword;
     
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "profile_image", nullable = true)
@@ -84,6 +95,12 @@ public class UserEntity extends DefaultEntity implements Serializable {
     
     @Transient
     private String currentToken;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "tbl_hr_managers", joinColumns = @JoinColumn(name = "userId"))
+    @Column( nullable = false)
+    private List<Long> reportTo = new ArrayList<>();
+
 
     public UserEntity() {
     }
@@ -221,6 +238,14 @@ public class UserEntity extends DefaultEntity implements Serializable {
         this.currentToken = currentToken;
     }
 
+    public List<Long> getReportTo() {
+        return reportTo;
+    }
+
+    public void setReportTo(List<Long> reportTo) {
+        this.reportTo = reportTo;
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
@@ -248,5 +273,4 @@ public class UserEntity extends DefaultEntity implements Serializable {
         PENDING,
         CANCEL
     }
-
 }

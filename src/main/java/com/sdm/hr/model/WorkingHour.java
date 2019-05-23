@@ -1,11 +1,13 @@
 package com.sdm.hr.model;
 
 import com.sdm.core.model.DefaultEntity;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.sql.Time;
+import java.util.Date;
 
-@Entity(name = "workingHour")
+@Entity(name = "WorkingHour")
 @Table(name = "tbl_hr_workinghours")
 public class WorkingHour extends DefaultEntity {
 
@@ -21,10 +23,23 @@ public class WorkingHour extends DefaultEntity {
     private Integer dayOfWeek;
 
     @Column(name = "fromTime", nullable = false)
-    private Time fromTime;
+    @Temporal(TemporalType.TIME)
+    private Date fromTime;
 
     @Column(name = "toTime", nullable = false)
-    private Time toTime;
+    @Temporal(TemporalType.TIME)
+    private Date toTime;
+
+    @Transient
+    private Boolean checkedDay;
+
+    public Boolean getCheckedDay() {
+        return checkedDay;
+    }
+
+    public void setCheckedDay(Boolean checkedDay) {
+        this.checkedDay = checkedDay;
+    }
 
     public Long getId() {
         return id;
@@ -50,20 +65,21 @@ public class WorkingHour extends DefaultEntity {
         this.dayOfWeek = dayOfWeek;
     }
 
-    public Time getFromTime() {
+    @DateTimeFormat(pattern = "HH:mm")
+    public Date getFromTime() {
         return fromTime;
     }
 
-    public void setFromTime(Time fromTime) {
+    public void setFromTime(Date fromTime) {
         this.fromTime = fromTime;
     }
 
-    public Time getToTime() {
+    public Date getToTime() {
         return toTime;
     }
 
-    public void setToTime(Time toTime) {
+    @DateTimeFormat(pattern = "HH:mm")
+    public void setToTime(Date toTime) {
         this.toTime = toTime;
     }
-
 }

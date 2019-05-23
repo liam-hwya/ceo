@@ -2,6 +2,7 @@ package com.sdm.hr.model;
 
 
 import com.sdm.core.model.DefaultEntity;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
@@ -55,6 +56,7 @@ public class Payment extends DefaultEntity {
         this.description = description;
     }
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     public Date getFromDate() {
         return fromDate;
     }
@@ -64,6 +66,7 @@ public class Payment extends DefaultEntity {
     }
 
     @Nullable
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     public Date getToDate() {
         return toDate;
     }

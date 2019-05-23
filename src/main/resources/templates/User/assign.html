@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="template ::bootstrap('Assign Staff')">
+<body>
+
+<div class="container">
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-3">
+            <h3>Staff Assign </h3><i class="fas fa-user-plus"></i>
+        </div>
+        <div class="col-md-6"></div>
+        <div class="col-md-3  d-flex flex-row-reverse">
+            <a th:href="@{/staff/detail/(id=${data.id})}" class="text-warning">Go Back <i class="fas fa-undo-alt"></i></a>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <form method="POST">
+
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

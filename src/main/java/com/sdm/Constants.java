@@ -126,4 +126,12 @@ public interface Constants {
          */
         String ROOT_ROLE = "ROOT";
     }
+
+    String[] DAY_OF_WEEK = {
+            "Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"
+    };
+
+    String[] DAY_ID = {
+            "sunday","monday","wednesday","thursday","friday","saturday"
+    };
 }

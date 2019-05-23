@@ -2,33 +2,61 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="template ::bootstrap('All Staff')">
 <body>
-
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".asc").hide();
+        $(".desc").click(function(){
+           $(".desc").hide();
+           $(".asc").show();
+        });
+        // $(".asc").on("click",function(){
+        //     $(".asc").addClass("hide");
+        //     $(".desc").addClass("show");
+        // });
+    });
+</script>
 <br>
 <br>
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            <h3>Staff</h3>
+            <h3>Staff </h3><i class="fas fa-users"></i>
         </div>
         <div class="col-md-6"></div>
-        <div class="col-md-3">
-            <a th:href="@{/staff/add/}" class="btn btn-primary btn-sm">Add Staff</a>
+        <div class="col-md-3 d-flex flex-row-reverse">
+            <a th:href="@{/staff/add/0}" class="btn c-btn text-center"><i class="fas fa-plus"></i> Add Staff</a>
         </div>
     </div>
+    <br>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 table_container">
             <table class="table table-bordered">
                 <thead class="thead-light">
                 <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Email</th>
+                    <th scope="col">
+                        <a th:href="@{/staff/(sort=displayName,order=${order=='ASC'}?DESC:ASC)}">Name</a>
+                        <span th:if="${sort=='displayName'}"><i class="fas" th:classappend="${order=='ASC'}?'fa-sort-amount-up':'fa-sort-amount-down'"></i></span>
+                    </th>
+                    <th scope="col">
+                        <a th:href="@{/staff/(sort=userName,order=${order=='ASC'}?DESC:ASC)}">Username</a>
+                        <span th:if="${sort=='userName'}"><i class="fas" th:classappend="${order=='ASC'}?'fa-sort-amount-up':'fa-sort-amount-down'"></i></span>
+                    </th>
+                    <th scope="col">
+                        <a th:href="@{/staff/(sort=email,order=${order=='ASC'}?DESC:ASC)}">Email</a>
+                        <span th:if="${sort=='email'}"><i class="fas" th:classappend="${order=='ASC'}?'fa-sort-amount-up':'fa-sort-amount-down'"></i></span>
+                    </th>
                     <th scope="col">Status</th>
+                    <th scope="col">
+                        <a th:href="@{/staff/(sort=createdAt,order=${order=='ASC'}?DESC:ASC)}">Registered Date</a>
+                        <span th:if="${sort=='createdAt'}"><i class="fas" th:classappend="${order=='ASC'}?'fa-sort-amount-up':'fa-sort-amount-down'"></i></span>
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="row:${data}">
-                    <th th:text="${row.displayName}"></th>
+                    <td>
+                        <a th:href="@{/staff/add/{id}(id=${row.id})}" th:text="${row.displayName}"></a>
+                    </td>
                     <td th:text="${row.userName}"></td>
                     <td th:text="${row.email}"></td>
                     <!--        <td th:if="${row.status.name() == 'ACTIVE'}" ></td>-->
@@ -39,13 +67,20 @@
                             <span th:case="'CANCEL'" class="badge badge-dark"  th:text="${row.status}"></span>
                         </span>
                     </td>
+                    <td th:text="${row.createdAt}" pattern="yyyy-MM-dd"></td>
 
                 </tr>
                 </tbody>
             </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end">
+                    <li class="page-item" th:each="i : ${#numbers.sequence(0,data.totalPages - 1)}">
+                        <a class="page-link active" th:href="@{/staff/(sort=${sort},order=${order},page=${i})}" th:text="${i}" ></a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </div>
-
 </body>
 </html>

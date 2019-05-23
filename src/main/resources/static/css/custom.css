@@ -1,0 +1,119 @@
+body {
+    background: url(/img/bg3.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.hide{
+    display:none;
+}
+.show{
+    display: inline-block;
+}
+.table_container{
+    padding:20px;
+    background: rgba(255,255,255,0.5);
+    -webkit-box-shadow: -1px 3px 10px -2px rgba(128,118,128,0.46);
+    -moz-box-shadow: -1px 3px 10px -2px rgba(128,118,128,0.46);
+    box-shadow: -1px 3px 10px -2px rgba(128,118,128,0.46);
+}
+
+.c-btn{
+    background: #6847a5;
+    color:#fff;
+    transition: all 1s linear;
+    border-radius: 30px;
+}
+.c-btn:hover{
+    color:#fff;
+}
+h3 {
+    display: inline;
+    font-family: 'Righteous', cursive;
+    padding:0px 5px;
+    border-left: 5px solid #6847a5;
+    border-top: 5px solid #6847a5;
+}
+
+h5{
+    padding:0px 10px 0px 5px;
+    background: linear-gradient(to right,rgba(104,71,165,1),rgba(104,71,165,0));
+    line-height:30px;
+    color:#fff;
+    width:250px;
+    font-family: 'Didact Gothic', sans-serif;
+}
+
+.table_title_bg{
+    background: linear-gradient(to right,rgba(104,71,165,0),rgba(104,71,165,1),rgba(104,71,165,0));
+}
+
+.table_title{
+    color:#fff;
+    font-family: 'Didact Gothic', sans-serif;
+}
+
+span.pill_date {
+    background: #FFC107;
+    padding: 5px 10px;
+    font-family: 'Didact Gothic', sans-serif;
+    color: #fff;
+    border-radius: 20px;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+span.time {
+    color: #FFC107;
+    font-family: 'Didact Gothic', sans-serif;
+}
+
+span{
+    font-weight: bold;
+    font-family: 'Didact Gothic', sans-serif;
+}
+
+.notice {
+    padding: 15px;
+    background-color: #fafafa;
+    border-left: 6px solid #7f7f84;
+    margin-bottom: 10px;
+    -webkit-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+    box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+}
+.notice-sm {
+    padding: 10px;
+    font-size: 80%;
+}
+.notice-lg {
+    padding: 35px;
+    font-size: large;
+}
+.notice-success {
+    border-color: #80D651;
+}
+.notice-success>strong {
+    color: #80D651;
+}
+.notice-info {
+    border-color: #45ABCD;
+}
+.notice-info>strong {
+    color: #45ABCD;
+}
+.notice-warning {
+    border-color: #FEAF20;
+}
+.notice-warning>strong {
+    color: #FEAF20;
+}
+.notice-danger {
+    border-color: #d73814;
+}
+.notice-danger>strong {
+    color: #d73814;
+}
