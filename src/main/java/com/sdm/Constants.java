@@ -131,6 +131,10 @@ public interface Constants {
             "Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"
     };
 
+    String[] TIME={
+            "09:00","18:00"
+    };
+
     String[] DAY_ID = {
             "sunday","monday","wednesday","thursday","friday","saturday"
     };

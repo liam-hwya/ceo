@@ -10,27 +10,23 @@ import com.sdm.master.entity.FileEntity;
 import com.sdm.master.entity.UserEntity;
 import com.sdm.master.repository.UserRepository;
 import com.sdm.master.service.FileService;
-import org.apache.tomcat.jni.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.naming.Binding;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class StaffController {
@@ -70,31 +66,37 @@ public class StaffController {
         return "/User/index";
     }
 
-    @GetMapping("/staff/add/")
-    public String insertStaff(Model model){
-
-        Staff staff = new Staff();
-
-        model.addAttribute("staff",staff);
-        model.addAttribute("dayOfWeeks", Constants.DAY_OF_WEEK);
-        model.addAttribute("staffLists",userRepository.findAll());
-
-        return "/User/insert";
-    }
+//    @GetMapping("/staff/add/")
+//    public String insertStaff(
+//            @PathVariable("id") Long id,
+//            Model model
+//    ){
+//
+//        Staff staff = new Staff();
+//
+//        model.addAttribute("staff",staff);
+//        model.addAttribute("dayOfWeeks", Constants.DAY_OF_WEEK);
+//        model.addAttribute("staffLists",userRepository.findAll());
+//
+//        return "/User/insert";
+//    }
 
     @Transactional
     @PostMapping("/staff/add/{id}")
     public String save(
-            @RequestParam("file") MultipartFile file,
             @PathVariable(value = "id") Long id,
-            @RequestParam(value = "isPublic", defaultValue = "true") boolean isPublic,
             @Valid Staff staff,
+            BindingResult bindingResult,
+            @RequestParam(value = "isPublic", defaultValue = "true") boolean isPublic,
+            @RequestParam("file") MultipartFile file,
             RedirectAttributes redirAttrs,
-            BindingResult result){
+            Model model){
 
-//        if (result.hasErrors()) {
-//            return "User/insert";
-//        }
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("dayOfWeeks", Constants.DAY_OF_WEEK);
+            model.addAttribute("staffLists",userRepository.findAll());
+            return "User/insert";
+        }
 
         UserEntity user=staff.getUser();
 
@@ -146,17 +148,12 @@ public class StaffController {
 
                     workingHour.setUserId(user.getId());
 
-//                    if(id!=0){
-//                        workingHour.setUserId(id);
-//                    }
-
                     workingHourRepository.save(workingHour);
                 }
             }
         }
         return "redirect:/staff/";
     }
-
 
     @GetMapping("/staff/add/{id}")
     public String detail(
@@ -195,38 +192,10 @@ public class StaffController {
         staff.setWorkingHours(dowArrays);
 
         model.addAttribute("dayOfWeeks", Constants.DAY_OF_WEEK);
-        model.addAttribute("data", staff);
+        model.addAttribute("staff", staff);
         model.addAttribute("paymentData",paymentRepository.findByUserIdForPayment(id));
         model.addAttribute("staffLists",userRepository.findAll());
 
         return "/User/insert";
     }
-
-    @GetMapping("/staff/assign/")
-    public String assign(@RequestParam Long id,Model model){
-
-        model.addAttribute("data",userRepository.findById(id).orElse(new UserEntity()));
-
-        return "/User/assign";
-    }
-
-
-
-    @GetMapping("/staff/payment/")
-    public String payment(@RequestParam Long id,Model model){
-
-        model.addAttribute("data",userRepository.findById(id).orElse(new UserEntity()));
-
-        return "/User/payment";
-    }
-
-    @PostMapping("/staff/payment/")
-    public String payment(@Valid Payment payment){
-
-        paymentRepository.save(payment);
-
-        return "redirect:/staff/";
-
-    }
-
 }

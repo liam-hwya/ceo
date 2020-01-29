@@ -125,47 +125,73 @@
     <br>
     <div class="row">
         <div class="col-md-12 table_container">
-            <form method="post" enctype="multipart/form-data">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Profile Upload</label>
-                        <input type="file" name="file">
+            <form method="post" enctype="multipart/form-data" th:object="${staff}">
+                <b class="text-warning">User credentials</b><br>
+                <hr>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Profile Upload</label>
+                                <input type="file" name="file">
+                            </div>
+                        </div>
+                        <img th:src="@{/files/{id}/{name}(id=${staff.user.profileImage.id},name=${staff.user.displayName})}" alt="profile image" width="100" height="100">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>Name</label>
+                                <input type="text" class="form-control" placeholder="your name"
+                                       th:value="${staff}?${staff.user.displayName}:''" th:field="*{user.displayName}"
+                                       th:classappend="${#fields.hasErrors('user.displayName')} ? 'is-invalid'"><br>
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('user.displayName')}" th:errors="*{user.displayName}">Errors Text</div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Username</label>
+                                <input type="text" class="form-control" placeholder="choose your username"
+                                       th:value="${staff}?${staff.user.userName}:''" th:field="*{user.userName}"
+                                       th:classappend="${#fields.hasErrors('user.userName')} ? 'is-invalid'" ><br>
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('user.userName')}" th:errors="*{user.userName}">Errors Text</div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label>Email</label>
+                                <input type="email" class="form-control" placeholder="your email"
+                                       th:value="${staff}?${staff.user.email}:''" th:field="*{user.email}"
+                                       th:classappend="${#fields.hasErrors('user.email')} ? 'is-invalid'" ><br>
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('user.email')}" th:errors="*{user.email}">Errors Text</div>
+                            </div>
+                            <div class="form-group col-md-4" th:if="${#httpServletRequest.requestURI == '/staff/add/0'}">
+                                <label>Password</label>
+                                <input type="password" class="form-control"  placeholder="choose your password"
+                                       th:field="*{user.password}"
+                                       th:classappend="${#fields.hasErrors('user.password')} ? 'is-invalid'">
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('user.password')}" th:errors="*{user.password}">Errors Text</div>
+                            </div>
+                            <div th:unless="${#httpServletRequest.requestURI == '/staff/add/0'}">
+                                <input type="password" value="abcdefgh" name="user.password" hidden>
+                            </div>
+                            <span class="text-danger" th:text="${message}"></span>
+                            <div class="form-group col-md-4" th:if="${#httpServletRequest.requestURI == '/staff/add/0'}">
+                                <label>Confirm Password</label>
+                                <input type="password" class="form-control"  placeholder="confirm your password"
+                                       th:field="*{user.confirmPassword}"
+                                       th:classappend="${#fields.hasErrors('user.confirmPassword')} ? 'is-invalid'">
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('user.confirmPassword')}" th:errors="*{user.confirmPassword}">Errors Text</div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label>Name</label>
-                        <input type="text" class="form-control" placeholder="your name" name="user.displayName" th:value="${data}?${data.user.displayName}:''"><br>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label>Username</label>
-                        <input type="text" class="form-control" placeholder="choose your username" name="user.userName"  th:value="${data}?${data.user.userName}:''"><br>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-3">
-                        <label>Email</label>
-                        <input type="email" class="form-control" placeholder="your email" name="user.email"  th:value="${data}?${data.user.email}:''">
-                    </div>
-                    <div class="form-group col-md-3" th:if="${#httpServletRequest.requestURI == '/staff/add/0'}">
-                        <label>Password</label>
-                        <input type="password" class="form-control"  placeholder="choose your password" name="user.password">
-                    </div>
-                    <span class="text-danger" th:text="${message}"></span>
-                    <div class="form-group col-md-3" th:if="${#httpServletRequest.requestURI == '/staff/add/0'}">
-                        <label>Confirm Password</label>
-                        <input type="password" class="form-control"  placeholder="confirm your password" name="user.confirmPassword">
-                    </div>
-<!--                    <div class="form-group col-md-4" th:if="${#httpServletRequest.requestURI == '/staff/add/0'}">-->
-<!--                        <label>Confirm Password</label>-->
-<!--                        <input type="password" class="form-control" placeholder="confirm your password" name="user.confirmPassword">-->
-<!--                    </div>-->
+                    <div class="col-md-2"></div>
                 </div>
 
+                <br>
+                <b class="text-warning">Work informations</b>
+                <hr>
                 <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-5">
                         <label>Work Hour</label><br>
-                        <table class="table table-condensed">
+                        <table class="table">
                             <thead>
                             <tr>
                                 <th>Day of week</th>
@@ -175,7 +201,7 @@
                             </thead>
                             <tbody>
                             <!-- Check the link where the url come from -->
-                                <tr th:each="dow,status:${data.workingHours}">
+                                <tr th:each="dow,status:${staff.workingHours}">
                                     <td>
                                         <div class="checkbox" style="margin-top:5px;">
                                             <label class="checkbox-custom" data-initialize="checkbox" >
@@ -190,43 +216,47 @@
                                     </td>
                                     <td>
                                         <input id="to6" th:name="${'workingHours['+status.index+'].toTime'}" class="form-control text-center" type="time" placeholder="HH:MM" th:value="${dow}?${dow.toTime}:'18:00'">
-                                        <input type="hidden" th:name="${'workingHours['+status.index+'].userId'}" th:value="${data.user.id}">
+                                        <input type="hidden" th:name="${'workingHours['+status.index+'].userId'}" th:value="${staff.user.id}">
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
+                    <div class="col-md-2"></div>
+                    <div class="form-group col-md-5">
+                        <div class="form-group" >
+                            <label for="payment">Payment</label>
+                            <input type="text" class="form-control" id="payment" name="payment.amountPerMonth" th:if="${#httpServletRequest.requestURI == '/staff/add/0'}">
+                            <input type="text" class="form-control" id="payment" name="payment.amountPerMonth" th:unless="${#httpServletRequest.requestURI == '/staff/add/0'}" th:value="${staff.payment.amountPerMonth}">
+                        </div>
+                        <div class="form-group">
+                            <label for="from">From</label>
+                            <input type="date" class="form-control" id="from" name="payment.fromDate" th:if="${#httpServletRequest.requestURI == '/staff/add/0'}">
+                            <input type="date" class="form-control" id="from" name="payment.fromDate" th:unless="${#httpServletRequest.requestURI == '/staff/add/0'}" th:value="${#calendars.format(staff.payment.fromDate, 'yyyy-MM-dd')}">
+                        </div>
+                        <div class="form-group">
+                            <label for="to">To</label>
+                            <input type="date" class="form-control" id="to" name="payment.toDate" th:if="${#httpServletRequest.requestURI == '/staff/add/0'}">
+                            <input type="date" class="form-control" id="to" name="payment.toDate" th:unless="${#httpServletRequest.requestURI == '/staff/add/0'}" th:value="${#calendars.format(staff.payment.toDate, 'yyyy-MM-dd')}">
+                        </div>
+                        <div class="form-group">
+                            <label for="desc">Description</label>
+                            <textarea class="form-control" rows="5" id="desc" name="payment.description" th:if="${#httpServletRequest.requestURI == '/staff/add/0'}"></textarea>
+                            <textarea class="form-control" rows="5" id="desc" name="payment.description" th:unless="${#httpServletRequest.requestURI == '/staff/add/0'}" th:text="${staff.payment.description}"></textarea>
+                            <input type="number" name="payment.userId" th:if="${#httpServletRequest.requestURI == '/staff/add/0'}" hidden/>
+                            <input type="number" name="payment.userId" th:unless="${#httpServletRequest.requestURI == '/staff/add/0'}" th:value="${staff.payment.userId}" hidden/>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="form-group">
-                    <label for="sel1">Select your manager</label>
+                    <label for="sel1">Select your manager <small class="text-info">Press "ctr" to select multiple</small></label>
                     <select class="form-control" id="sel1" name="user.reportTo" multiple="multiple">
                         <span th:each="row:${staffLists}">
                             <option th:if="${#httpServletRequest.requestURI == '/staff/add/'}" th:value="${row.id}" th:text="${row.displayName}"></option>
-                            <option th:unless="${#httpServletRequest.requestURI == '/staff/add/'}" th:selected="${#lists.contains(data.user.reportTo, row.id)}" th:value="${row.id}" th:text="${row.displayName}"></option>
+                            <option th:unless="${#httpServletRequest.requestURI == '/staff/add/'}" th:selected="${#lists.contains(staff.user.reportTo, row.id)}" th:value="${row.id}" th:text="${row.displayName}"></option>
                         </span>
                     </select>
-                </div>
-                <div class="form-group" >
-                    <label for="payment">Payment</label>
-                    <input type="text" class="form-control" id="payment" name="payment.amountPerMonth" th:if="${#httpServletRequest.requestURI == '/staff/add/0'}">
-                    <input type="text" class="form-control" id="payment" name="payment.amountPerMonth" th:unless="${#httpServletRequest.requestURI == '/staff/add/0'}" th:value="${data.payment.amountPerMonth}">
-                </div>
-                <div class="form-group">
-                    <label for="from">From</label>
-                    <input type="date" class="form-control" id="from" name="payment.fromDate" th:if="${#httpServletRequest.requestURI == '/staff/add/0'}">
-                    <input type="date" class="form-control" id="from" name="payment.fromDate" th:unless="${#httpServletRequest.requestURI == '/staff/add/0'}" th:value="${#calendars.format(data.payment.fromDate, 'yyyy-MM-dd')}">
-                </div>
-                <div class="form-group">
-                    <label for="to">To</label>
-                    <input type="date" class="form-control" id="to" name="payment.toDate" th:if="${#httpServletRequest.requestURI == '/staff/add/0'}">
-                    <input type="date" class="form-control" id="to" name="payment.toDate" th:unless="${#httpServletRequest.requestURI == '/staff/add/0'}" th:value="${#calendars.format(data.payment.toDate, 'yyyy-MM-dd')}">
-                </div>
-                <div class="form-group">
-                    <label for="desc">Description</label>
-                    <textarea class="form-control" rows="5" id="desc" name="payment.description" th:if="${#httpServletRequest.requestURI == '/staff/add/0'}"></textarea>
-                    <textarea class="form-control" rows="5" id="desc" name="payment.description" th:unless="${#httpServletRequest.requestURI == '/staff/add/0'}" th:text="${data.payment.description}"></textarea>
-                    <input type="number" name="payment.userId" th:if="${#httpServletRequest.requestURI == '/staff/add/0'}" hidden/>
-                    <input type="number" name="payment.userId" th:unless="${#httpServletRequest.requestURI == '/staff/add/0'}" th:value="${data.payment.userId}" hidden/>
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Add Staff" class="btn c-btn">

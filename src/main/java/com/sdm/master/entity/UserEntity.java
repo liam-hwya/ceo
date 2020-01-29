@@ -1,6 +1,5 @@
 package com.sdm.master.entity;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.sdm.core.model.DefaultEntity;
@@ -31,13 +30,15 @@ public class UserEntity extends DefaultEntity implements Serializable {
     @Size(min = 6, max = 255 , message = "Username must be at least 6 characters")
     @Column(name = "userName", unique = true, nullable = false)
     private String userName;
-    
+
+    @NotBlank
     @Email
     @Size(max = 255)
     @Column(name = "email", unique = true)
     private String email;
-    
-    @Size(max = 255 , message = "Your name is too long.Please type correct name")
+
+    @NotBlank
+    @Size(max = 255 , message = "Please type your name")
     @JsonIgnore
     @Column(name = "display_name")
     private String displayName;
@@ -63,7 +64,7 @@ public class UserEntity extends DefaultEntity implements Serializable {
     @CollectionTable(name = "tbl_user_extras",
         joinColumns = @JoinColumn(name = "user_id", nullable = false))
     private Map<String, String> extras = new HashMap();
-    
+
     @NotBlank
     @Size(min = 6, max = 255 , message = "Password must be at least 6 digits")
     @Column(name = "password", columnDefinition = "VARCHAR(255)", nullable = false)

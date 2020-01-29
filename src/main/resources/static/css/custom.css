@@ -5,6 +5,12 @@ body {
     -o-background-size: cover;
     background-size: cover;
 }
+
+::placeholder{
+    font-size: 12px;
+    color: #999999;
+}
+
 .hide{
     display:none;
 }
